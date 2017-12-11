@@ -1,3 +1,27 @@
 // Place all the styles related to the Pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+// login
+#login-form-container, #create-user-form-container {
+  font-family: Helvetica;
+  width: 30%;
+  min-width: 250px;
+  padding: 20px;
+  text-align: center;
+  box-sizing: border-box;
+  border: 1px solid #EAEAEA;
+  h2 {
+    color: green;
+  }
+  input {
+    display: block;
+    text-align: center;
+    padding: 5px;
+    margin-top: 5px;
+    font-size: 15px;
+    width: 200px;
+  }
+  input.login-button {
+    width: 100px;
+  }
+}

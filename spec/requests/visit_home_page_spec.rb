@@ -7,8 +7,6 @@ RSpec.describe "home page", :type => :feature do
       visit '/'
 
       expect(page).to have_content 'welcome to chortle'
-      # expect(page).to have_field("username")
-      # expect(page).to have_field("password")
       expect(page).to have_field("username", placeholder: "username")
       expect(page).to have_field("password", placeholder: "password")
       expect(page).to have_button 'log in'

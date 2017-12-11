@@ -1,9 +1,9 @@
-<h1>welcome to chortle</h1>
+
 
 <div id='login-form-container'>
-
+  <h2>welcome to chortle</h2>
   <%= form_for(:sessions, url: login_path) do |f| %>
-    <%= f.email_field :username, class: 'form-field', placeholder: 'username' %>
+    <%= f.text_field :username, class: 'form-field', placeholder: 'username' %>
     <%= f.password_field :password, class: 'form-field', placeholder: 'password' %>
     <%= f.submit 'log in', class: 'login-button button' %>
   <% end %>
@@ -12,11 +12,11 @@
 
 
 <div id='create-user-form-container'>
-
+  <h2>create an account</h2>
   <%= form_for(:users, url: create_user_path) do |f| %>
-    <%= f.email_field :username, class: 'form-field', placeholder: 'username' %>
+    <%= f.text_field :username, class: 'form-field', placeholder: 'username' %>
     <%= f.password_field :password, class: 'form-field', placeholder: 'password' %>
-    <%= f.password_field :password_confirmation, class: 'form-field', placeholder: 'password_confirmation' %>
+    <%= f.password_field :password_confirmation, class: 'form-field', placeholder: 'password confirmation' %>
     <%= f.submit 'create account', class: 'login-button button' %>
   <% end %>
 
