@@ -1,5 +1,3 @@
-
-
 <div id='login-form-container'>
   <h2>welcome to chortle</h2>
   <%= form_for(:sessions, url: login_path) do |f| %>
@@ -19,16 +17,4 @@
     <%= f.password_field :password_confirmation, class: 'form-field', placeholder: 'password confirmation' %>
     <%= f.submit 'create account', class: 'login-button button' %>
   <% end %>
-
 </div>
-
-<!-- 
-def create
-  @person = Person.new(person_params)
-  # ...
-end
- 
-private
-  def person_params
-    params.require(:person).permit(:name, addresses_attributes: [:id, :kind, :street])
-  end -->

@@ -9,6 +9,7 @@
   </head>
 
   <body>
+    <div class='flash-notice'><%= flash[:notice] %></div>
     <%= render 'layouts/navbar' %>
     <%= yield %>
     <%= render 'layouts/footer' %>
