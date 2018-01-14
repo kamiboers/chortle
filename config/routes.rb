@@ -1,21 +1,12 @@
 Rails.application.routes.draw do
-  get 'users/create'
-
-  get 'users/update'
-
-  get 'users/destroy'
-
-  # get 'sessions/create'
-
-
+  
+  root 'pages#home'
+  
   post '/login', to: 'sessions#create', as: 'login'
-  get 'sessions/update'
-  get 'sessions/destroy'
+  get '/logout', to: 'sessions#destroy', as: 'logout'
   
   post '/create_user', to: 'users#create', as: 'create_user'
-  get 'user/update'
-  get 'user/destroy'
+  get 'users/update'
+  get 'users/destroy'
 
-  root 'pages#home'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

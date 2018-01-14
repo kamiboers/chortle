@@ -1,18 +1,13 @@
 class UsersController < ApplicationController
   def create
-    if (user_params[:password] == user_params[:password_confirmation])
-      @user = User.new(username: user_params[:username], password: user_params[:password])
-      if @user.save
-        flash[:notice] = "new account: #{@user.username}"
-      else
-        flash[:notice] = "account creation failed"
-      end
-
-      redirect_to root_path
+    @user = User.new(user_params)
+    if user.save
+      session[:user_id] = user.id
+      flash[:notice] = "new account: #{user.username}"
     else
-      flash[:notice]
-      redirect_to root_path
+      flash[:notice] = "account creation failed: #{user.errors.messages}"
     end
+    redirect_to root_path
   end
 
   def update
@@ -23,7 +18,9 @@ class UsersController < ApplicationController
 
   private
 
+  attr_reader :user
+
   def user_params
-    params.require(:users).permit(:username, :password, :password_confirmation)
+    params.require(:user).permit(:username, :password, :password_confirmation)
   end
 end
