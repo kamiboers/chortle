@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 // login
+$header-text-color: green;
+
+
 #login-form-container, #create-user-form-container {
   font-family: Helvetica;
   width: 30%;
@@ -11,7 +14,7 @@
   box-sizing: border-box;
   border: 1px solid #EAEAEA;
   h2 {
-    color: green;
+    color: $header-text-color;
   }
   input {
     display: block;

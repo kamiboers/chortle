@@ -2,24 +2,18 @@ require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
 
-  describe "GET #create" do
+  describe "POST #create" do
     it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #update" do
-    it "returns http success" do
-      get :update
-      expect(response).to have_http_status(:success)
+      post :create, :params => { :session => { :username => "username", :password => "password" } }
+      
+      expect(response).to have_http_status(:redirect)
     end
   end
 
   describe "GET #destroy" do
     it "returns http success" do
       get :destroy
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(:redirect)
     end
   end
 
