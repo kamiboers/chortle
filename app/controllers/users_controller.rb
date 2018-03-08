@@ -3,9 +3,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if user.save
       session[:user_id] = user.id
-      flash[:notice] = "new account: #{user.username}"
+      flash[:success] = "new account: #{user.username}"
     else
-      flash[:notice] = "account creation failed: #{user.errors.messages}"
+      flash[:warning] = "account creation failed: #{user.errors.full_messages.join(', ')}"
     end
     redirect_to root_path
   end
@@ -13,9 +13,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by(id: user_params[:id])
     if user && user.update_attributes(user_params)
-      flash[:notice] = "user updated successfully"
+      flash[:success] = "user updated successfully"
     else
-      flash[:notice] = "unable to update user: #{user.errors.messages}"
+      flash[:warning] = "unable to update user: #{user.errors.full_messages.join(', ')}"
     end
     redirect_to root_path
   end
@@ -23,10 +23,10 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find_by(id: user_params[:id])
     if user && user.destroy
-      flash[:notice] = "user account deleted"
+      flash[:success] = "user account deleted"
       redirect_to logout_path
     else
-      flash[:notice] = "unable to delete user account"
+      flash[:warning] = "unable to delete user account"
       redirect_to root_path
     end
   end
