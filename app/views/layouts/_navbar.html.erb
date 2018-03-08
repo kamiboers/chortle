@@ -2,8 +2,10 @@
   <span class='navbar-logo'>chortle</span>
   <span class='navbar-links'>
     <ul class="navbar-links-list">
-      <li><%= link_to "Home",   'home_path(no quotes)' %></li>
-      <li><%= link_to "log in/out", 'login/out_path(no quotes conditional)' %></li>
+      <% if current_user %>
+      <li><%= link_to "home", root_path %></li>
+      <li><%= link_to "log out", logout_path %></li>
+      <% end %>
     </ul>
   </span>
 </div>

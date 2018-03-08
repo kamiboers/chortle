@@ -1,34 +1,24 @@
+<% if current_user %>
+  signed in as <%= current_user.username %> | <%= link_to "Log Out", '/logout' %>
+<% else %>
+  <div id='login-form-container'>
+    <h2>welcome to chortle</h2>
+    <%= form_for(:session, url: login_path) do |f| %>
+      <%= f.text_field :username, class: 'form-field', placeholder: 'username' %>
+      <%= f.password_field :password, class: 'form-field', placeholder: 'password' %>
+      <%= f.submit 'log in', class: 'login-button button' %>
+    <% end %>
+
+  </div>
 
 
-<div id='login-form-container'>
-  <h2>welcome to chortle</h2>
-  <%= form_for(:sessions, url: login_path) do |f| %>
-    <%= f.text_field :username, class: 'form-field', placeholder: 'username' %>
-    <%= f.password_field :password, class: 'form-field', placeholder: 'password' %>
-    <%= f.submit 'log in', class: 'login-button button' %>
-  <% end %>
-
-</div>
-
-
-<div id='create-user-form-container'>
-  <h2>create an account</h2>
-  <%= form_for(:users, url: create_user_path) do |f| %>
-    <%= f.text_field :username, class: 'form-field', placeholder: 'username' %>
-    <%= f.password_field :password, class: 'form-field', placeholder: 'password' %>
-    <%= f.password_field :password_confirmation, class: 'form-field', placeholder: 'password confirmation' %>
-    <%= f.submit 'create account', class: 'login-button button' %>
-  <% end %>
-
-</div>
-
-<!-- 
-def create
-  @person = Person.new(person_params)
-  # ...
-end
- 
-private
-  def person_params
-    params.require(:person).permit(:name, addresses_attributes: [:id, :kind, :street])
-  end -->
+  <div id='create-user-form-container'>
+    <h2>create an account</h2>
+    <%= form_for(:user, url: create_user_path) do |f| %>
+      <%= f.text_field :username, class: 'form-field', placeholder: 'username' %>
+      <%= f.password_field :password, class: 'form-field', placeholder: 'password' %>
+      <%= f.password_field :password_confirmation, class: 'form-field', placeholder: 'password confirmation' %>
+      <%= f.submit 'create account', class: 'login-button button' %>
+    <% end %>
+  </div>    
+<% end %>
