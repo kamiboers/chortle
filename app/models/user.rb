@@ -21,7 +21,12 @@ class User < ApplicationRecord
     update_attribute(:session_digest, User.digest(session_token))
   end
 
+  def clear_session_token
+    update_attribute(:session_digest, nil)
+  end
+
   def authenticated?(session_token)
+    return false if session_digest.nil?
     BCrypt::Password.new(session_digest).is_password?(session_token)
   end
 end

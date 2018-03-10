@@ -27,7 +27,7 @@ RSpec.describe "login page", :type => :feature do
         fill_in 'session[password]', with: 'password'
       end
       click_button 'log in'
-
+      
       #   assert_select ".header .username", :text => "jdoe" - future assertions
       expect(page).to have_content "logged in: #{@user.username}"
       expect(page).to have_content "signed in as #{@user.username}"
@@ -41,10 +41,39 @@ RSpec.describe "login page", :type => :feature do
         fill_in 'session[password]', with: 'password2'
       end
       click_button 'log in'
+
       expect(page).to have_content "login failed"
       expect(page).not_to have_content "logged in: #{@user.username}"
       expect(page).not_to have_content "signed in as #{@user.username}"
       expect(page).not_to have_content "log out"
+
+      visit root_path
+
+      expect(page).not_to have_content "signed in as #{@user.username}"
+      expect(page).not_to have_content "log out"
     end
+
+    # it "logs user in with valid information followed by logout" do
+    #   visit root_path
+    #   post login_path, params: { session: { username: @user.username, 
+    #                                         password: @user.password } }
+    #   expect(is_logged_in?).to be(true)
+    #   # assert_redirected_to root_path
+    #   # follow_redirect!
+    #   # assert_template 'users/show'
+    #   # assert_select "a[href=?]", login_path, count: 0
+    #   # assert_select "a[href=?]", logout_path
+
+    #   delete logout_path
+    #   expect(is_logged_in?).not_to be(true)
+    #   # assert_redirected_to root_url
+
+    #   # Simulate a user clicking logout in a second window.
+    #   # delete logout_path
+    #   # follow_redirect!
+    #   # assert_select "a[href=?]", login_path
+    #   # assert_select "a[href=?]", logout_path,      count: 0
+    # end
+
   end
 end

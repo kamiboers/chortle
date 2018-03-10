@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    log_out(user)
+    log_out(user) if current_user
     redirect_with_message(root_path, "logout successful", :success)
   end
 

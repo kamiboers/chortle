@@ -57,4 +57,9 @@ RSpec.describe User, type: :model do
     expect(user.valid?).to eq(false)
     expect(user.errors.messages[:password]).to include("is too long (maximum is 20 characters)")
   end
+
+  it "returns false for authenticated? for a user with nil digest" do
+    user = User.create(username: "username", password: "password")
+    expect(user.authenticated?('comparisondigest')).to be(false)
+  end
 end
