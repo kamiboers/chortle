@@ -20,4 +20,8 @@ class User < ApplicationRecord
     self.session_token = User.new_token
     update_attribute(:session_digest, User.digest(session_token))
   end
+
+  def authenticated?(session_token)
+    BCrypt::Password.new(session_digest).is_password?(session_token)
+  end
 end
