@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   
   def create
-    @user = User.find_by(username: session_params[:username])
+    @user = User.find_by(username: session_params[:username].downcase)
     if user && user.authenticate(session_params[:password])
       session[:user_id] = user.id
       flash[:success] = "logged in: #{user.username}"
@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
+    @current_user = nil
     flash[:success] = "logout successful"
     redirect_to root_path
   end
