@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe "login page", :type => :feature do
+  def log_in_as(user, password: 'password', remember_me: '1')
+    post login_path, params: { session: { email: user.username,
+                                          password: password,
+                                          remember_me: remember_me } }
+  end
+
   describe "visiting the login page", :type => :feature do
 
     it "displays a splash page and sign modal" do
@@ -52,6 +58,13 @@ RSpec.describe "login page", :type => :feature do
       expect(page).not_to have_content "signed in as #{@user.username}"
       expect(page).not_to have_content "log out"
     end
+
+
+    #TODO - test remember_me checkbox and figure out how to post rather than use ui (pt9)
+
+    # it "uses a helper method" do
+    #   log_in_as(@user)
+    # end
 
     # it "logs user in with valid information followed by logout" do
     #   visit root_path

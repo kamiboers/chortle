@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: session_params[:username].downcase)
     if user && user.authenticate(session_params[:password])
       log_in(user)
-      store_session_token(user)
+      params[:session][:remember_me] == '1' ? store_session_token(user) : clear_cookies(user)
       redirect_with_message(root_path, "logged in: #{user.username}", :success)
     else
       redirect_with_message(root_path, "login failed", :warning)
