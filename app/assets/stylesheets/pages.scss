@@ -4,7 +4,6 @@
 // login
 $header-text-color: green;
 
-
 #login-form-container, #create-user-form-container {
   font-family: Helvetica;
   width: 30%;
@@ -26,5 +25,9 @@ $header-text-color: green;
   }
   input.login-button {
     width: 100px;
+  }
+  input.checkbox {
+    display: inline;
+    width: 15px;
   }
 }

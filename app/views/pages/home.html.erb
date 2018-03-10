@@ -6,6 +6,10 @@
     <%= form_for(:session, url: login_path) do |f| %>
       <%= f.text_field :username, class: 'form-field', placeholder: 'username' %>
       <%= f.password_field :password, class: 'form-field', placeholder: 'password' %>
+      <%= f.label :remember_me do %>
+        <%= f.check_box :remember_me, class: 'checkbox' %>
+        <span>remember me</span>
+      <% end %>
       <%= f.submit 'log in', class: 'login-button button' %>
     <% end %>
 
